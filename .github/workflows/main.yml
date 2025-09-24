@@ -1,28 +1,20 @@
-# Simple workflow for deploying a static project to GitHub Pages
 name: Deploy static project to Pages
 
 on:
-  # Runs on pushes to the main branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the runs of this workflow.
-# However, this permission is only granted to the last pushed commit on a branch.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -37,10 +29,10 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install
-        working-directory: ayursutra/frontend
+        working-directory: ./ayursutra/frontend
       - name: Build project
         run: npm run build
-        working-directory: ayursutra/frontend
+        working-directory: ./ayursutra/frontend
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
